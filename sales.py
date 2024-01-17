@@ -3,14 +3,14 @@ from subprocess import call
 from tkinter import messagebox
 import csv
 
-sales = Tk()
-sales.geometry("2000x500")
-sales.title("Sales")
-# sales.resizable(True, False)
-sales.configure(bg="#219ebc")
+main = Tk()
+main.geometry("2000x500")
+main.title("Sales")
+# main.resizable(True, False)
+main.configure(bg="#219ebc")
 
 background_image = PhotoImage(file = r"D:\ex\project\tkinter-Project\secondbg.png")
-background_label = Label(sales, image=background_image)
+background_label = Label(main, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
 
@@ -53,7 +53,7 @@ def save():
 # copy data to the table
 
 def back():
-  sales.destroy()
+  main.destroy()
   call(["python", r"D:\ex\project\tkinter-Project\menu.py"])
 
 
@@ -66,11 +66,11 @@ def clear_entries():
   quantity_input.delete(0,END)
 
 
-head = Label(sales, text="> sales",font=("Arial", 20, "bold"),fg="white",bg="orange",pady=20,width=300)
+head = Label(main, text="> sales",font=("Arial", 20, "bold"),fg="white",bg="orange",pady=20,width=300)
 
 
 #display data 
-data = Label(sales, bg="white")
+data = Label(main, bg="white")
 data.place(x=680, y= 390, anchor=W, width=820, height=600)
 
 id = Label(data, text="ID", bg="grey", font=("Arial", 12))
@@ -94,35 +94,35 @@ quantity.place(x=683, y= 16, anchor=W, width=136, height=36)
 
 
 
-product_id = Label(sales, text="Product ID", font=("Arial", 16), bg="black", fg="white")
-client = Label(sales, text="client", font=("Arial", 16), bg="black", fg="white")
-phone = Label(sales, text="phone", font=("Arial", 16), bg="black", fg="white")
-product_name = Label(sales, text="Product Name", font=("Arial", 16), bg="black", fg="white")
-s_Price = Label(sales, text="Price", font=("Arial", 16), bg="black", fg="white")
-quantity = Label(sales, text="Quantity", font=("Arial", 16), bg="black", fg="white")
+product_id = Label(main, text="Product ID", font=("Arial", 16), bg="black", fg="white")
+client = Label(main, text="client", font=("Arial", 16), bg="black", fg="white")
+phone = Label(main, text="phone", font=("Arial", 16), bg="black", fg="white")
+product_name = Label(main, text="Product Name", font=("Arial", 16), bg="black", fg="white")
+s_Price = Label(main, text="Price", font=("Arial", 16), bg="black", fg="white")
+quantity = Label(main, text="Quantity", font=("Arial", 16), bg="black", fg="white")
 
-product_id_input = Entry(sales)
-client_input = Entry(sales)
-phone_input = Entry(sales)
-product_name_input = Entry(sales)
-s_Price_input = Entry(sales)
-quantity_input = Entry(sales)
+product_id_input = Entry(main)
+client_input = Entry(main)
+phone_input = Entry(main)
+product_name_input = Entry(main)
+s_Price_input = Entry(main)
+quantity_input = Entry(main)
 
 
 # buttons save and clear
-save_btn = Button(sales, text="Save Record", bg="black", font=("Arial", 14),fg="orange", command=save)
+save_btn = Button(main, text="Save Record", bg="black", font=("Arial", 14),fg="orange", command=save)
 save_btn.place(x=80, y= 400, anchor=W, width=190, height=50)
 
-clear_btn = Button(sales, text="Clear Entry", bg="black", font=("Arial", 14),fg="orange", command=clear_entries)
+clear_btn = Button(main, text="Clear Entry", bg="black", font=("Arial", 14),fg="orange", command=clear_entries)
 clear_btn.place(x=280, y= 400, anchor=W, width=190, height=50)
 
 
 # buttons edit/ remove / retour message box/ 
 
-remove_btn = Button(sales, text="Remove", bg="black", font=("Arial", 14), fg="orange")
+remove_btn = Button(main, text="Remove", bg="black", font=("Arial", 14), fg="orange")
 remove_btn.place(x=1000, y= 750, anchor=E, width=140, height=50)
 
-back_btn = Button(sales, text="Back", bg="black", font=("Arial", 14), fg="orange", command=back)
+back_btn = Button(main, text="Back", bg="black", font=("Arial", 14), fg="orange", command=back)
 back_btn.place(x=1150, y= 750, anchor=E, width=140, height=50)
 
 
@@ -146,4 +146,4 @@ s_Price_input.place(x=280, y= 280, anchor=W, width=250, height=30)
 quantity.place(x=118, y= 320, anchor=E)
 quantity_input.place(x=280, y= 320, anchor=W, width=250, height=30)
 
-sales.mainloop()
+main.mainloop()
