@@ -1,21 +1,22 @@
 from tkinter import *
 from subprocess import call
 from tkinter import messagebox
+from tkinter import ttk
 import csv
 
-purchases = Tk()
-purchases.geometry("2000x500")
-purchases.title("Purchases")
-# purchases.resizable(True, False)
-purchases.configure(bg="#219ebc")
+main = Tk()
+main.geometry("2000x500")
+main.title("Purchases")
+# main.resizable(True, False)
+main.configure(bg="#219ebc")
 
-background_image = PhotoImage(file = r"c:\Users\hp\Desktop\secondbg.png")
-background_label = Label(purchases, image=background_image)
+background_image = PhotoImage(file = r"D:\ex\project\tkinter-Project\secondbg.png")
+background_label = Label(main, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
 
 csv_header = ["ID","supplier","phone","product_name","price","quantity"]
-file = open(r"C:\Users\hp\Desktop\tkinter\projet\purchases.csv", "a")
+file = open(r"purchases.csv", "a")
 writer = csv.writer(file, delimiter=',', lineterminator="\r")
 
 #if the file is empty write the header 
@@ -31,8 +32,9 @@ def save():
   product_name = product_name_input.get()
   price = price_input.get()
   quantity = quantity_input.get()
-  print(product_id,supplier_id,phone,product_name,price,quantity)
-  
+
+  # Insert data into the treeview
+  tree.insert('', 'end', values=(product_id, supplier_id, phone,product_name,price,quantity))   
 
   # TO Validate input fields
   if not product_id or not supplier_id or not phone or not product_name or not price  or not quantity:
@@ -50,11 +52,31 @@ def save():
   except Exception as error:
     messagebox.showerror("Error", error)
 
-# copy data to the table
+# Create a Treeview widget
+tree = ttk.Treeview(main, columns=('ID', 'supplier', 'phone','name', 'price','quantity'), show='headings')
+
+# Define column headings
+tree.heading('ID', text='ID')
+tree.heading('supplier', text='supplier')
+tree.heading('phone', text='phone')
+tree.heading('name', text='name')
+tree.heading('price', text='price')
+tree.heading('quantity', text='quantity')
+
+# Specify column widths
+tree.column('ID', width=136)
+tree.column('supplier', width=136)
+tree.column('phone', width=136)
+tree.column('name', width=136)
+tree.column('price', width=136)
+tree.column('quantity', width=136)
+
+# Pack the Treeview widget
+tree.place(x=680, y= 390, anchor=W, width=837, height=600)
 
 def back():
-  purchases.destroy()
-  call(["python", r"C:\Users\hp\Desktop\tkinter\projet\principal.py"])
+  main.destroy()
+  call(["python", r"D:\ex\project\stock-Management\menu.py"])
 
 
 def clear_entries():
@@ -66,68 +88,38 @@ def clear_entries():
   quantity_input.delete(0,END)
 
 
-head = Label(purchases, text="> Purchases",
-              font=("Arial", 20, "bold"),
-              fg="white",
-              bg="orange",
-              pady=20,
-              width=300)
+head = Label(main, text="> Purchases",font=("Arial", 20, "bold"),fg="white",bg="orange",pady=20,width=300)
 
 
-#display data 
-data = Label(purchases, bg="white")
-data.place(x=680, y= 390, anchor=W, width=820, height=600)
+product_id = Label(main, text="Product ID", font=("Arial", 16), bg="black", fg="white")
+supplier = Label(main, text="supplier", font=("Arial", 16), bg="black", fg="white")
+phone = Label(main, text="phone", font=("Arial", 16), bg="black", fg="white")
+product_name = Label(main, text="Product Name", font=("Arial", 16), bg="black", fg="white")
+price = Label(main, text="Price", font=("Arial", 16), bg="black", fg="white")
+quantity = Label(main, text="Quantity", font=("Arial", 16), bg="black", fg="white")
 
-id = Label(data, text="ID", bg="grey", font=("Arial", 12))
-id.place(x=-2, y= 16, anchor=W, width=136, height=36)
-
-supplier = Label(data, text="supplier", bg="grey", font=("Arial", 12))
-supplier.place(x=135, y= 16, anchor=W, width=136, height=36)
-
-phone = Label(data, text="phone", bg="grey", font=("Arial", 12))
-phone.place(x=272, y= 16, anchor=W, width=136, height=36)
-
-name = Label(data, text="name", bg="grey", font=("Arial", 12))
-name.place(x=409, y= 16, anchor=W, width=136, height=36)
-
-price = Label(data, text="price", bg="grey", font=("Arial", 12))
-price.place(x=546, y= 16, anchor=W, width=136, height=36)
-
-quantity = Label(data, text="quantity", bg="grey", font=("Arial", 12))
-quantity.place(x=683, y= 16, anchor=W, width=136, height=36)
-
-
-
-
-product_id = Label(purchases, text="Product ID", font=("Arial", 16), bg="black", fg="white")
-supplier = Label(purchases, text="supplier", font=("Arial", 16), bg="black", fg="white")
-phone = Label(purchases, text="phone", font=("Arial", 16), bg="black", fg="white")
-product_name = Label(purchases, text="Product Name", font=("Arial", 16), bg="black", fg="white")
-price = Label(purchases, text="Price", font=("Arial", 16), bg="black", fg="white")
-quantity = Label(purchases, text="Quantity", font=("Arial", 16), bg="black", fg="white")
-
-product_id_input = Entry(purchases)
-supplier_input = Entry(purchases)
-phone_input = Entry(purchases)
-product_name_input = Entry(purchases)
-price_input = Entry(purchases)
-quantity_input = Entry(purchases)
+product_id_input = Entry(main)
+supplier_input = Entry(main)
+phone_input = Entry(main)
+product_name_input = Entry(main)
+price_input = Entry(main)
+quantity_input = Entry(main)
 
 
 # buttons save and clear
-save_btn = Button(purchases, text="Save Record", bg="black", font=("Arial", 14),fg="orange", command=save)
+save_btn = Button(main, text="Save Record", bg="black", font=("Arial", 14),fg="orange", command=save)
 save_btn.place(x=80, y= 400, anchor=W, width=190, height=50)
 
-clear_btn = Button(purchases, text="Clear Entry", bg="black", font=("Arial", 14),fg="orange", command=clear_entries)
+clear_btn = Button(main, text="Clear Entry", bg="black", font=("Arial", 14),fg="orange", command=clear_entries)
 clear_btn.place(x=280, y= 400, anchor=W, width=190, height=50)
 
 
 # buttons edit/ remove / retour message box/ 
 
-remove_btn = Button(purchases, text="Remove", bg="black", font=("Arial", 14), fg="orange")
+remove_btn = Button(main, text="Remove", bg="black", font=("Arial", 14), fg="orange")
 remove_btn.place(x=1000, y= 750, anchor=E, width=140, height=50)
 
-back_btn = Button(purchases, text="Back", bg="black", font=("Arial", 14), fg="orange", command=back)
+back_btn = Button(main, text="Back", bg="black", font=("Arial", 14), fg="orange", command=back)
 back_btn.place(x=1150, y= 750, anchor=E, width=140, height=50)
 
 
@@ -151,4 +143,4 @@ price_input.place(x=280, y= 280, anchor=W, width=250, height=30)
 quantity.place(x=118, y= 320, anchor=E)
 quantity_input.place(x=280, y= 320, anchor=W, width=250, height=30)
 
-purchases.mainloop()
+main.mainloop()
