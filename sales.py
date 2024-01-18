@@ -9,19 +9,19 @@ main = Tk()
 main.geometry("2000x1000")
 main.title("Sales")
 
-icon_path = r"D:\ex\project\tkinter-Project\pin.png"
+icon_path = r"C:\Users\hp\Desktop\tkinter\projet\pin.png"
 img = Image.open(icon_path)
 icon = ImageTk.PhotoImage(img)
 main.iconphoto(True, icon)
 
 
 main.configure(bg="black")
-background_image = PhotoImage(file = r"D:\ex\project\tkinter-Project\secondbg.png")
+background_image = PhotoImage(file = r"c:\Users\hp\Desktop\tkinter\projet\secondbg.png")
 background_label = Label(main, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
 csv_header = ["ID","client","phone","product_name","s_Price","quantity"]
-file = open(r"D:\ex\project\tkinter-Project\sales.csv", "a+")
+file = open(r"c:\Users\hp\Desktop\tkinter\projet\sales.csv", "a+")
 writer = csv.writer(file, delimiter=',', lineterminator="\r")
 
 #if the file is empty write the header 
@@ -157,6 +157,9 @@ def edit():
 head = Label(main, text="> Sales",font=("Arial", 20, "bold"),fg="white",bg="orange",pady=20,width=300)
 
 
+
+
+
 product_id = Label(main, text="Product ID", font=("Arial", 16), bg="black", fg="white")
 client = Label(main, text="Client", font=("Arial", 16), bg="black", fg="white")
 phone = Label(main, text="Phone", font=("Arial", 16), bg="black", fg="white")
@@ -202,22 +205,24 @@ back_btn.place(x=290, y= 520, anchor=W, width=200, height=50)
 back_btn.config(cursor="hand2")
 
 head.place(x=150,y=30, anchor=CENTER)
+
 product_id.place(x=140, y= 120, anchor=E)
 product_id_input.place(x=280, y= 120, anchor=W, width=250, height=30)
 
-client.place(x=114, y= 160, anchor=E)
+client.place(x=97, y= 160, anchor=E)
 client_input.place(x=280, y= 160, anchor=W, width=250, height=30)
 
 phone.place(x=98, y= 200, anchor=E)
 phone_input.place(x=280, y= 200, anchor=W, width=250, height=30)
 
-product_name.place(x=103, y= 240, anchor=CENTER)
+product_name.place(x=170, y= 240, anchor=E)
 product_name_input.place(x=280, y= 240, anchor=W, width=250, height=30)
 
-s_Price.place(x=89, y= 280, anchor=E)
+s_Price.place(x=155, y= 280, anchor=E)
 s_Price_input.place(x=280, y= 280, anchor=W, width=250, height=30)
 
-quantity.place(x=118, y= 320, anchor=E)
+quantity.place(x=115, y= 320, anchor=E)
 quantity_input.place(x=280, y= 320, anchor=W, width=250, height=30)
+
 
 main.mainloop()
