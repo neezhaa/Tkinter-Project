@@ -7,15 +7,17 @@ The system integrates both purchase and sales management functionalities. For pu
 
 To run this project, you will need the following:
 
--- Python 3 or later
---Tkinter library
+- Python 3 or later
+- Tkinter library (usually comes pre-installed with Python)
+- Image library (PIL)
 
 # Installation
 
-To install the required dependencies, run the following command in your terminal:
+To install the required libraries, open a terminal or command prompt and run the following commands:
 
 ```
 pip install tkinter
+pip install pillow
 ```
 
 # Project Structure
