@@ -1,11 +1,17 @@
 from tkinter import *
 from tkinter import ttk
 from subprocess import call
-from tkinter.constants import *
+from PIL import Image, ImageTk
 
 app = Tk()
 app.title("Stock Management")
 app.geometry("800x500")
+
+
+icon_path = r"D:\ex\project\tkinter-Project\pin.png"
+img = Image.open(icon_path)
+icon = ImageTk.PhotoImage(img)
+app.iconphoto(True, icon)
 
 # in case of the background image doesn't work
 app.config(background="black")
@@ -15,18 +21,11 @@ background_image = PhotoImage(file = r"D:\ex\project\tkinter-Project\secondbg.pn
 background_label = Label(app, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
-def Sales_data_entry():
-  pass
-
-# Purchase's function
-
 def Purchase():
   app.destroy()
-  call(["python", "purchases.py"])
+  call(["python", "purchase.py"])
 
-# Sales's function
 def Sales():
-
   app.destroy()
   call(["python", "sales.py"])
 
